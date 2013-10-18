@@ -66,6 +66,7 @@ augeas { "php-cli-timezone":
   incl => '/etc/php5/cli/php.ini',
   lens => 'Php.lns',
   changes => ["set 'Date/date.timezone' 'UTC'"],
+  require => Package['php5-cli'],
 }
 
 augeas { 'php-apc-stat' : 
