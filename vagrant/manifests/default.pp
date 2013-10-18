@@ -43,12 +43,13 @@ package { 'subversion' : }
 
 file { '/etc/nginx/sites-available/phabricator' : 
   source => '/vagrant/files/etc/nginx/sites-available/phabricator',
+  require => Package['nginx'],
 }
 
 file { '/etc/nginx/sites-enabled/phabricator' :
   ensure => 'link',
   target => '/etc/nginx/sites-available/phabricator',
-  require => File['/etc/nginx/sites-available/phabricator'],
+  require => [Package['nginx'], File['/etc/nginx/sites-available/phabricator']],
   notify => Service['nginx'],
 }
 
